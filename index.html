@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoolSphere - Urban Heat Mitigation</title>
+    <link href="Untitled design.png" rel="icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Enhanced Styles */
+        :root {
+            --primary: #00ff88;
+            --secondary: #2575fc;
+            --background: #0a192f;
+            --card-bg: #112240;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background: var(--background);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            padding: 1.5rem 5%;
+            background: rgba(17, 34, 64, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .login-signup {
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    color: #ffffff;
+    padding: 0.8rem 1.5rem;
+    font-size: 14px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: absolute; /* Absolute positioning */
+    right: 189px; /* Move 5 cm away from the right border */
+    top: 20px; /* Adjust top position if needed */
+}
+
+
+        .login-signup:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,255,136,0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 15rem 5% 10rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, var(--primary), transparent);
+            animation: rotate 20s linear infinite;
+            opacity: 0.1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin: 0 0 1.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin: 20px 0;
+            color: #cccccc;
+            animation: slideUp 1.5s ease-in-out;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: #ffffff;
+            padding: 0.8rem 1.5rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,255,136,0.3);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 5%;
+            background: var(--background);
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .feature-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,255,136,0.1);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255,255,255,0.1),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin: 10px 0;
+            color: #ffffff;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #cccccc;
+        }
+
+        /* Map Section */
+        .map-section {
+            padding: 5rem 5%;
+            background: var(--background);
+            text-align: center;
+        }
+
+        .map-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #map {
+            height: 500px;
+            width: 90%;
+            margin: 0 auto;
+            border: 5px solid #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            background-color: var(--card-bg);
+        }
+
+        /* Gamification Section */
+        .gamification {
+            padding: 5rem 5%;
+            background: var(--background);
+            text-align: center;
+        }
+
+        .gamification h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .progress-bar {
+            width: 60%;
+            height: 20px;
+            background: var(--card-bg);
+            border-radius: 10px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            animation: progressAnimation 2s ease-in-out;
+        }
+
+        @keyframes progressAnimation {
+            from { width: 0%; }
+            to { width: 70%; }
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 5rem 5%;
+            background: var(--background);
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .testimonial-carousel {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+        }
+
+        .testimonial {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 15px;
+            width: 300px;
+            scroll-snap-align: start;
+        }
+
+        .testimonial p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+            color: #cccccc;
+        }
+
+        /* Footer */
+        footer {
+            padding: 20px;
+            background: var(--background);
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            width: 100%;
+            text-align: center;
+        }
+
+        .social-links {
+            margin-top: 10px;
+        }
+
+        .social-links a {
+            color: var(--primary);
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">CoolSphere</div>
+        <button class="login-signup" onclick="redirectToLogin()">Login / Signup</button>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>CoolSphere</h1>
+        <p>Visualize Urban Heat Islands. Take Action. Build a Cooler Future.</p>
+        <button class="cta-button" onclick="redirectToLogin()">Join the Movement</button>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2>Why CoolSphere?</h2>
+        <div class="feature-cards">
+            <div class="card">
+                <i class="fas fa-map-marked-alt"></i>
+                <h3>Heatmap Visualization</h3>
+                <p>Explore real-time heatmaps of urban areas.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-users"></i>
+                <h3>Crowdsourced Data</h3>
+                <p>Contribute to data collection with photos and surveys.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-seedling"></i>
+                <h3>Mitigation Strategies</h3>
+                <p>Get actionable solutions like tree planting and green roofs.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <h2>Explore the Heatmap</h2>
+        <div id="map"></div>
+    </section>
+
+    <!-- Gamification Section -->
+    <section class="gamification">
+        <h2>Earn Rewards, Make a Difference</h2>
+        <div class="gamification-content">
+            <div class="progress-bar">
+                <div class="progress" style="width: 70%;"></div>
+            </div>
+            <p>Complete challenges to earn points and badges!</p>
+            <button class="cta-button" onclick="redirectToLogin()">Get Started</button>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2>What People Are Saying</h2>
+        <div class="testimonial-carousel">
+            <div class="testimonial">
+                <p>"CoolSphere helped our community identify heat hotspots and take action!"</p>
+                <p>- John Doe, Urban Planner</p>
+            </div>
+            <div class="testimonial">
+                <p>"The gamification features make it fun to contribute to a greener city."</p>
+                <p>- Jane Smith, Environmentalist</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>Urban Heat Island Map - Stay Cool, Stay Informed!</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Load the GoMap Pro API -->
+    <script async defer
+        src="https://maps.gomaps.pro/maps/api/js?key=AlzaSyClPPbHYj_p6rWAUa5PZyfVZbJHnYEXKAU&libraries=geometry,places&callback=initMap">
+    </script>
+
+    <script>
+        let map;
+
+        function initMap() {
+            // Initialize the map centered in Greater Noida
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 28.4744, lng: 77.5031 },
+                zoom: 13,
+                styles: [
+                    {
+                        featureType: "water",
+                        stylers: [{ color: "#76c7c0" }]
+                    },
+                    {
+                        featureType: "landscape",
+                        stylers: [{ color: "#f0f8e2" }]
+                    },
+                    {
+                        featureType: "road",
+                        stylers: [{ visibility: "simplified" }]
+                    },
+                    {
+                        featureType: "poi",
+                        stylers: [{ color: "#c8e6c9" }]
+                    }
+                ]
+            });
+        }
+
+        function redirectToLogin() {
+            window.location.href = 'http://127.0.0.1:5500/user%20login.html';
+        }
+    </script>
+</body>
+</html>

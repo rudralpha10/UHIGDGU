@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoolSphere - Urban Heat Mitigation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Enhanced Styles */
+        :root {
+            --primary: #00ff88;
+            --secondary: #2575fc;
+            --background: #0a192f;
+            --card-bg: #112240;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background: var(--background);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            padding: 1.5rem 5%;
+            background: rgba(17, 34, 64, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .login-signup {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: #ffffff;
+            padding: 0.8rem 1.5rem;
+            font-size: 14px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .login-signup:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,255,136,0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 15rem 5% 10rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, var(--primary), transparent);
+            animation: rotate 20s linear infinite;
+            opacity: 0.1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin: 0 0 1.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin: 20px 0;
+            color: #cccccc;
+            animation: slideUp 1.5s ease-in-out;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: #ffffff;
+            padding: 0.8rem 1.5rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,255,136,0.3);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Map Section */
+        .map-section {
+            padding: 5rem 5%;
+            background: var(--background);
+            text-align: center;
+        }
+
+        .map-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #map {
+            height: 500px;
+            width: 90%;
+            margin: 0 auto;
+            border: 5px solid #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            background-color: var(--card-bg);
+        }
+
+        /* Search input styling */
+        #pac-input {
+            margin: 20px auto;
+            display: block;
+            width: 320px;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            background: var(--card-bg);
+            color: #ffffff;
+        }
+
+        /* Info window styling */
+        .info-window {
+            font-size: 14px;
+            color: #ec1017;
+        }
+
+        /* Footer */
+        footer {
+            padding: 20px;
+            background: var(--background);
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            width: 100%;
+            text-align: center;
+        }
+
+        .social-links {
+            margin-top: 10px;
+        }
+
+        .social-links a {
+            color: var(--primary);
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary);
+        }
+    </style>
+</head>
+<body>
+   
+    
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <h2>Explore the Heatmap</h2>
+        <input id="pac-input" type="text" placeholder="Search for a place">
+        <div id="map"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>Urban Heat Island Map - Stay Cool, Stay Informed!</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Load the GoMap Pro API -->
+    <script async defer
+        src="https://maps.gomaps.pro/maps/api/js?key=AlzaSyClPPbHYj_p6rWAUa5PZyfVZbJHnYEXKAU&libraries=geometry,places&callback=initMap">
+    </script>
+
+    <script>
+        let map;
+        let autocomplete;
+
+        // Additional hotspots in Greater Noida
+        const hotspots = [
+            {
+                name: "Pari Chowk",
+                position: { lat: 28.474389, lng: 77.50399 },
+                dashboardURL: "http://127.0.0.1:5500/TASK.html"
+            },
+            {
+                name: "Alpha 1 Market",
+                position: { lat: 28.469047, lng: 77.497155 },
+                dashboardURL: "http://127.0.0.1:5500/TASK.html"
+            },
+            {
+                name: "Gautam Buddha University",
+                position: { lat: 28.412535, lng: 77.520096 },
+                dashboardURL: "http://127.0.0.1:5500/TASK.html"
+            },
+            {
+                name: "Jaypee Greens Golf Course",
+                position: { lat: 28.465520, lng: 77.500253 },
+                dashboardURL: "http://127.0.0.1:5500/TASK.html"
+            },
+            {
+                name: "Knowledge Park 2",
+                position: { lat: 28.462344, lng: 77.503227 },
+                dashboardURL: "http://127.0.0.1:5500/TASK.html"
+            },
+            {
+                name: "Knowledge Park 3",
+                position: { lat: 28.462956, lng: 77.497918 },
+                dashboardURL: "http://127.0.0.1:5500/TASK.html"
+            },
+            {
+                name: "Yatharth Hospital",
+                position: { lat: 28.4687, lng: 77.5046 },
+                dashboardURL: "http://127.0.0.1:5500/TASK.html"
+            },
+            {
+                name: "Sharda University",
+                position: { lat: 28.440497, lng: 77.516086 },
+                dashboardURL: "http://127.0.0.1:5500/tt.html"
+            },
+            {
+                name: "Amity University Noida Extension",
+                position: { lat: 28.6038, lng: 77.0466 },
+                dashboardURL: "http://127.0.0.1:5500/TASK.html"
+            }
+        ];
+
+        function initMap() {
+            // Initialize the map centered in Greater Noida
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 28.4744, lng: 77.5031 },
+                zoom: 13,
+                styles: [
+                    {
+                        featureType: "water",
+                        stylers: [{ color: "#76c7c0" }]
+                    },
+                    {
+                        featureType: "landscape",
+                        stylers: [{ color: "#f0f8e2" }]
+                    },
+                    {
+                        featureType: "road",
+                        stylers: [{ visibility: "simplified" }]
+                    },
+                    {
+                        featureType: "poi",
+                        stylers: [{ color: "#c8e6c9" }]
+                    }
+                ]
+            });
+
+            const input = document.getElementById('pac-input');
+            autocomplete = new google.maps.places.Autocomplete(input);
+            autocomplete.bindTo('bounds', map);
+
+            autocomplete.addListener('place_changed', () => {
+                const place = autocomplete.getPlace();
+                if (!place.geometry) {
+                    console.log("No details available for the input: '" + place.name + "'");
+                    return;
+                }
+
+                if (place.geometry.viewport) {
+                    map.fitBounds(place.geometry.viewport);
+                } else {
+                    map.setCenter(place.geometry.location);
+                    map.setZoom(17);
+                }
+
+                new google.maps.Marker({
+                    position: place.geometry.location,
+                    map: map
+                });
+            });
+
+            addHotspotMarkers();
+        }
+
+        function addHotspotMarkers() {
+            hotspots.forEach(hotspot => {
+                const marker = new google.maps.Marker({
+                    position: hotspot.position,
+                    map: map,
+                    title: hotspot.name,
+                    icon: {
+                        url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+                    }
+                });
+
+                marker.addListener('click', () => {
+                    window.location.href = hotspot.dashboardURL;
+                });
+
+                const infoWindow = new google.maps.InfoWindow({
+                    content: `<div class="info-window"><h4>${hotspot.name}</h4><p>Click to view task dashboard</p></div>`
+                });
+
+                marker.addListener('mouseover', () => {
+                    infoWindow.open(map, marker);
+                });
+
+                marker.addListener('mouseout', () => {
+                    infoWindow.close();
+                });
+            });
+        }
+
+        function redirectToLogin() {
+            window.location.href = 'http://127.0.0.1:5500/loginuhi.html';
+        }
+    </script>
+</body>
+</html>

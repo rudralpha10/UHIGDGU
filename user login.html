@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Signup</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        /* Root colors */
+        :root {
+            --primary: #00ff88;
+            --secondary: #2575fc;
+            --background: #0a192f;
+            --card-bg: #112240;
+        }
+
+        /* Animated background */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background: linear-gradient(-45deg, #2575fc, #6a11cb, #00ff88, #ff416c);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Particle background */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Container styling */
+        .container {
+            background: var(--card-bg);
+            width: 400px;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            z-index: 1;
+            position: relative;
+        }
+
+        h2 {
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2rem;
+        }
+
+        /* Form styling */
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 10px;
+            color: #ffffff;
+            font-size: 1rem;
+            text-align: left;
+        }
+
+        input {
+            margin-bottom: 20px;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            outline: none;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Button styling */
+        button {
+            padding: 12px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: #ffffff;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+        }
+
+        /* Link styling */
+        .link {
+            text-align: center;
+            margin-top: 20px;
+            color: #ffffff;
+        }
+
+        .link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+
+    <!-- Login form container -->
+    <div class="container" id="login-container">
+        <h2>Login</h2>
+        <form id="login-form">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter your username">
+
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password">
+
+            <button type="submit">Login</button>
+        </form>
+        <div class="link">
+            Don't have an account? <a href="#" onclick="toggleForms()">Sign up</a>
+        </div>
+    </div>
+
+    <!-- Signup form container -->
+    <div class="container" id="signup-container" style="display: none;">
+        <h2>Sign Up</h2>
+        <form id="signup-form">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Enter your full name">
+
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Enter your email">
+
+            <label for="username-signup">Username</label>
+            <input type="text" id="username-signup" placeholder="Choose a username">
+
+            <label for="password-signup">Password</label>
+            <input type="password" id="password-signup" placeholder="Create a password">
+
+            <button type="submit">Sign Up</button>
+        </form>
+        <div class="link">
+            Already have an account? <a href="#" onclick="toggleForms()">Login</a>
+        </div>
+    </div>
+
+    <!-- JavaScript for toggling forms and particles -->
+    <script>
+        // Toggle between login and signup forms
+        function toggleForms() {
+            const loginContainer = document.getElementById('login-container');
+            const signupContainer = document.getElementById('signup-container');
+            loginContainer.style.display = loginContainer.style.display === 'none' ? 'block' : 'none';
+            signupContainer.style.display = signupContainer.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Redirect to the dashboard after login or signup
+        function redirectToDashboard() {
+            window.location.href = 'http://127.0.0.1:5500/hotspots%20map.html';
+        }
+
+        // Handle login form submission
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            redirectToDashboard();
+        });
+
+        // Handle signup form submission
+        document.getElementById('signup-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            redirectToDashboard();
+        });
+
+        // Initialize particles.js
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 100 },
+                size: { value: 3 },
+                move: { speed: 2 },
+                line_linked: { enable: true, opacity: 0.2 },
+                opacity: { value: 0.5 },
+                color: { value: "#ffffff" },
+            }
+        });
+    </script>
+
+</body>
+</html>

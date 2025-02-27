@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - Coolsphere</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #112240, #1e5a87);
+            color: #ffffff; 
+            font-family: Arial, sans-serif;
+            text-align: center;
+            position: relative; 
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1.5s ease-in-out, glow 2s infinite alternate;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            }
+            to {
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: black;
+            background: #00FFFF;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: 0.3s ease-in-out;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #00dada;
+        }
+
+        .coolsphere-logo {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #20B2AA;
+        }
+
+        .nav-buttons {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="coolsphere-logo">CoolSphere</div>
+
+    <div class="nav-buttons">
+        <a href="leaderboard.html" class="btn">Leaderboard</a>
+    </div>
+
+    <div class="container">
+        <h1>Thank You!</h1>
+        <p>Your submission has been received. We appreciate your effort in making cities cooler and greener!!</p>
+    </div>
+</body>
+</html>
